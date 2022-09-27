@@ -50,4 +50,10 @@ app.post("/wishes", (req, res) => {
     res.status(201).send("You worked, here is your new wish" + newWish);
 });
 
+app.delete("/wishes/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    wishes.splice(id, 1);
+    res.send("We spliced that right now");
+})
+
 module.exports = app;
