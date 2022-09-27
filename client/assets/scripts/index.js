@@ -51,7 +51,7 @@ const displayWishData = async () => {
 
             // LINK ATTEMPT
             const linkBox = document.createElement('a');
-            linkBox.href = `index.html?id=${i}`;
+            linkBox.href = `wish.html?id=${i}`;
             linkBox.classList.add("card-link");
 
             // Set content
@@ -110,3 +110,5 @@ const createNewWish = async (e) => {
 
 const myForm = document.querySelector("#create-form");
 myForm.addEventListener('submit', createNewWish);
+
+//
