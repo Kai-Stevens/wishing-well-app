@@ -15,6 +15,7 @@ const fetchWish = async (wishIndex) => {
 
         // Read in the data and display it
         displayWishData(wishData);
+        grantButtonSetup(wishData);
     
     } catch (error) {
         console.log(error);
@@ -73,4 +74,12 @@ const displayWishData = (wishData) => {
     } catch(error) {
         console.log(error);
     }
+}
+
+// Set up the buttons
+
+const grantButtonSetup = async (wishData) => {
+    const grantButton = document.querySelector("#wish-grant");
+    const wishId = wishData["id"];
+    console.log("sdhasdk: " + wishId);
 }
