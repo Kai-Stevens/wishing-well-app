@@ -1,13 +1,13 @@
 const wishes = [
     {
-        id: 0,
         name: "Kai",
-        wish: "Please can you work."
+        wish: "Please can you work.",
+        id: 0
     },
     {
-        id: 1,
         name: "App",
-        wish: "Please stop trying to make me work."
+        wish: "Please stop trying to make me work.",
+        id: 1
     }
 ];
 

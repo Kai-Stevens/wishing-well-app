@@ -36,4 +36,16 @@ app.get("/wishes/:id", (req, res) => {
     }
 });
 
+// Post a new wish to the app
+app.post("/wishes", (req, res) => {
+    // Get the wish body data
+    const newWish = req.body;
+    // Add it to the list of current wishes
+    newWish["id"] = wishes.length;
+    wishes.push(newWish);
+
+    // Return a message saying it worked
+    res.status(201).send("You worked, here is your new wish" + newWish);
+});
+
 module.exports = app;
