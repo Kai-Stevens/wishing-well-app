@@ -49,6 +49,11 @@ const displayWishData = async () => {
             const dDenyValue = document.createElement('div');
             dDenyValue.className = 'wish-deny';
 
+            // LINK ATTEMPT
+            const linkBox = document.createElement('a');
+            linkBox.href = `index.html?id=${i}`;
+            linkBox.classList.add("card-link");
+
             // Set content
             dWishName.textContent = "Name: " + wishName;
             dWishContent.textContent = "Wish: " + wishContent;
@@ -56,10 +61,11 @@ const displayWishData = async () => {
             dDenyValue.textContent = denyValue;
 
             //Append items
-            wishSection.appendChild(wishCard);
-            wishCard.appendChild(dWishName);
-            wishCard.appendChild(dWishContent);
-            wishCard.appendChild(buttonSection);
+            wishSection.appendChild(linkBox);
+            //linkBox.appendChild(wishCard);
+            linkBox.appendChild(dWishName);
+            linkBox.appendChild(dWishContent);
+            linkBox.appendChild(buttonSection);
 
             buttonSection.appendChild(dGrantValue);
             buttonSection.appendChild(dDenyValue);
@@ -71,6 +77,8 @@ const displayWishData = async () => {
 }
 
 displayWishData();
+
+// Create a new wish
 
 const createNewWish = async (e) => {
     e.preventDefault();

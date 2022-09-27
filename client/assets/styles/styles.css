@@ -45,7 +45,7 @@ h2 {
     width: 100%;
 }
 
-.wish-card {
+.card-link {
     display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -53,8 +53,14 @@ h2 {
     flex-direction: column;
     background-color: #1D4049;
     border-radius: 20px;
-    box-shadow: 5px 10px #092D34
+    box-shadow: 5px 10px #092D34;
 }
+
+.card-link:hover {
+    background-color: #0C3C45;
+}
+
+a:link, a:visited, a:hover, a:active{text-decoration: none;}
 
 .wish-text {
     padding: 20px;
