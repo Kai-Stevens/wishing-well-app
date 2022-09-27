@@ -71,3 +71,34 @@ const displayWishData = async () => {
 }
 
 displayWishData();
+
+const createNewWish = async (e) => {
+    e.preventDefault();
+
+    //Extract the data into an object
+    const data = {
+        name: e.target.name.value,
+        wish: e.target.wish.value
+    }
+
+    console.log(data);
+    // Set the options for the fetch request
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }
+
+    // Make a fetch request, sending the data
+    const response = await fetch("http://localhost:3000/wishes", options);
+
+    if (response.status == 201) {
+        alert("Created your new wish!");
+        window.location.reload();
+    }
+}
+
+const myForm = document.querySelector("#create-form");
+myForm.addEventListener('submit', createNewWish);

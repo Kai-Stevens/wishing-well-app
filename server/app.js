@@ -42,6 +42,8 @@ app.post("/wishes", (req, res) => {
     const newWish = req.body;
     // Add it to the list of current wishes
     newWish["id"] = wishes.length;
+    newWish["grant"] = 0;
+    newWish["deny"] = 0;
     wishes.push(newWish);
 
     // Return a message saying it worked
