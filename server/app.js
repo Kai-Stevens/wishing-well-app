@@ -50,6 +50,19 @@ app.post("/wishes", (req, res) => {
     res.status(201).send("You worked, here is your new wish" + newWish);
 });
 
+app.post("/wishes/:id", (req, res) => {
+    // get the grant value
+    const valInc = req.body;
+    
+    //Update the the wish value
+    const id = req.params.id;
+
+    wishes[id].grant += 1;
+
+    res.status(201).send("You worked, your grant request has succeeded");
+
+});
+
 app.delete("/wishes/:id", (req, res) => {
     const id = parseInt(req.params.id);
     wishes.splice(id, 1);
