@@ -114,7 +114,8 @@ a:link, a:visited, a:hover, a:active{text-decoration: none;}
     border-style: solid;
     border-radius: 10px;
     border-color: #092D34;
-    box-shadow: 5px 10px #092D34
+    box-shadow: 5px 10px #092D34;
+    min-width: 250px;
 }
 
 .form-items {
