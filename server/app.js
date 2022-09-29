@@ -50,8 +50,8 @@ app.post("/wishes", (req, res) => {
     res.status(201).send("You worked, here is your new wish" + newWish);
 });
 
-// Add a GRANT vote to a link based on ID
-app.put("/wishes/:id", (req, res) => {
+// Add a vote route to a link based on ID
+app.post("/wishes/:id", (req, res) => {
     // get the grant value
     const id = parseInt(req.params.id);
     
@@ -62,15 +62,16 @@ app.put("/wishes/:id", (req, res) => {
         if (wish.id == id) {
 
             // Update the vote count
-            wish.grant += 1;
+            if (req.body.vote == "grant") {
+                wish.grant += 1;
+            } else if (req.body.vote == "deny") {
+                wish.deny += 1;
+            }
 
             // Report that the voting worked
-            res.status(201).send({ message: "Successfully voted grant on wish. "})
+            res.status(201).send({ message: "Successfully voted on wish. "})
         }
     });
-
-    // If nothing got sent before now, then there was no matching link to vote on
-    res.status(404).send({ error: "Unable to locate wish." });
 });
 
 app.delete("/wishes/:id", (req, res) => {

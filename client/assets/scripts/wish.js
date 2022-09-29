@@ -23,20 +23,26 @@ const fetchWish = async (wishIndex) => {
 
 fetchWish(wishIndex);
 
-const voteGrantWish = async () => {
+const voteWish = async (vote) => {
     console.log("I've been pressed!");
     const wishIndex = getWishId();
+    const voteData = {
+        vote: vote
+    }
+
     try {
         const options = {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-type": "application/json"
-            }
+            },
+            body: JSON.stringify(voteData)
         }
+        console.log("my options body " + options.body);
         const response = await fetch(`http://localhost:3000/wishes/${wishIndex}`, options);
 
         if (response.status == 201) {
-            alert("Voted on your new wish!");
+            alert(`Voted:[${vote}] on this wish!`);
             window.location.reload();
         }
     } catch (error) {
@@ -97,4 +103,12 @@ const displayWishData = (wishData) => {
 }
 
 const grantBtn = document.querySelector("#wish-grant");
-grantBtn.addEventListener('click', voteGrantWish);
+const denyBtn = document.querySelector("#wish-deny");
+
+grantBtn.addEventListener('click', () => {
+    voteWish("grant");
+});
+
+denyBtn.addEventListener('click', () => {
+    voteWish("deny");
+});
