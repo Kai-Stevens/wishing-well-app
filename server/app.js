@@ -50,17 +50,27 @@ app.post("/wishes", (req, res) => {
     res.status(201).send("You worked, here is your new wish" + newWish);
 });
 
-app.post("/wishes/:id", (req, res) => {
+// Add a GRANT vote to a link based on ID
+app.put("/wishes/:id", (req, res) => {
     // get the grant value
-    const valInc = req.body;
+    const id = parseInt(req.params.id);
     
-    //Update the the wish value
-    const id = req.params.id;
+    // Loop through the links
+    wishes.forEach(wish => {
 
-    wishes[id].grant += 1;
+        // If the id matches
+        if (wish.id == id) {
 
-    res.status(201).send("You worked, your grant request has succeeded");
+            // Update the vote count
+            wish.grant += 1;
 
+            // Report that the voting worked
+            res.status(201).send({ message: "Successfully voted grant on wish. "})
+        }
+    });
+
+    // If nothing got sent before now, then there was no matching link to vote on
+    res.status(404).send({ error: "Unable to locate wish." });
 });
 
 app.delete("/wishes/:id", (req, res) => {

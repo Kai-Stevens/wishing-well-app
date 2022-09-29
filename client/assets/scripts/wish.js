@@ -15,13 +15,34 @@ const fetchWish = async (wishIndex) => {
 
         // Read in the data and display it
         displayWishData(wishData);
-    
+
     } catch (error) {
         console.log(error);
     }
 }
 
 fetchWish(wishIndex);
+
+const voteGrantWish = async () => {
+    console.log("I've been pressed!");
+    const wishIndex = getWishId();
+    try {
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+        const response = await fetch(`http://localhost:3000/wishes/${wishIndex}`, options);
+
+        if (response.status == 201) {
+            alert("Voted on your new wish!");
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 const displayWishData = (wishData) => {
     try {
@@ -74,3 +95,6 @@ const displayWishData = (wishData) => {
         console.log(error);
     }
 }
+
+const grantBtn = document.querySelector("#wish-grant");
+grantBtn.addEventListener('click', voteGrantWish);
